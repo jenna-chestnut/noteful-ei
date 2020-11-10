@@ -1,0 +1,13 @@
+.item {
+  flex: 1;
+}
+
+.selected-folder {
+  background-color: #3f1a33;
+}
+
+.sidebar li {
+  font-size: 25px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
