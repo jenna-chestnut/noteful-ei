@@ -1,27 +1,36 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import AddFolder from '../Elements/AddFolder';
+import StoreContext from '../StoreContext';
 
 class MainSideBar extends React.Component {
+
     render() {
-        const {folders} = this.props.store;
-        const folderItems = folders.map((folder, idx) => {
-            return <Link key={idx} to={`/folder/${folder.name}`}>
-            <li 
-            type='radio'
-            key={folder.id} 
-            id={folder.id} 
-            name='folder'>
-                {folder.name}
-            </li>
-            </Link>
-        })
         return (
-            <>
-                {folderItems}
-                <Link to=''>
-                <li key='addFolder'>ADD FOLDER?!</li>
-                </Link>
-            </>
+            <StoreContext.Consumer>
+                {({ folders }) => {
+
+                    const folderItems = folders.map((folder, idx) => {
+                        return (
+                            <Link key={idx} to={`/folder/${folder.name}`}>
+                                <li
+                                    key={folder.id}
+                                    id={folder.id}
+                                    name='folder'>
+                                    {folder.name}
+                                </li>
+                            </Link>
+                        )
+                    })
+
+                    return (
+                        <>
+                            {folderItems}
+                            <AddFolder />
+                        </>
+                    )
+                }}
+            </StoreContext.Consumer>
         )
     }
 }

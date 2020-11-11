@@ -1,12 +1,20 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
-import './styles/header.css';
+import { withRouter } from 'react-router-dom';
+import './sweepingstyles/header.css';
 
 class Header extends React.Component {
     render() {
         return (
-            <header onClick={() => this.props.history.push('/')}>
-                {this.props.children}
+            <header>
+                <h1 onClick={() => this.props.history.push('/')}>
+                    N <br/>
+                    O <br/>
+                    T <br/>
+                    E <br/>
+                    F <br/>
+                    U <br/>
+                    L 
+                    </h1>
             </header>
         )
     }

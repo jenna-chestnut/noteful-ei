@@ -1,25 +1,34 @@
 import React from 'react';
 import moment from 'moment';
+import StoreContext from '../StoreContext';
+import DeleteNote from '../Elements/DeleteNote';
 
 class NoteMain extends React.Component {
+
     render() {
-        const { notes } = this.props.store;
-
-        const note = notes.find(note => {
-            return this.props.match.match.params.noteId
-                === note.name
-        })
-
-
         return (
-            <div className='content'>
-                <li className='note-view' key={note.id}>
-                    <span className='note-name'>{note.name}</span>
-                    <button className='delete-note'>DELETE</button>
-                    <p>Date modified: {moment(note.modified).calendar()}</p>
-                </li>
-                <p>{note.content}</p>
-            </div>
+            <StoreContext.Consumer>
+                {({ notes }) => {
+
+                    const note = notes.find(note => {
+                        return this.props.match.params.noteId
+                            === note.name
+                    }) || {content: 'loading'}
+
+
+                    return (
+                        <div className='content'>
+                            <li className='note-view' key={note.id}>
+                                <span className='note-name'>{note.name}</span>
+                                <DeleteNote 
+                                id={note.id}/>
+                                <p>Date modified: {moment(note.modified).calendar()}</p>
+                            </li>
+                            <p>{note.content}</p>
+                        </div>
+                    )
+                }}
+            </StoreContext.Consumer>
         )
     }
 }

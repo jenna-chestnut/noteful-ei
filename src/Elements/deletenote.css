@@ -1,0 +1,14 @@
+.delete-note {
+  padding: 10%;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+@media all and (min-width: 600px) {
+  .delete-note {
+    padding: 3%;
+    float: right;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+}

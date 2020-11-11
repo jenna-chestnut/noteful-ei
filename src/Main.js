@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/main.css';
+import './sweepingstyles/main.css';
 
 class Main extends React.Component {
     render() {
