@@ -15,7 +15,7 @@ class NoteSideBar extends React.Component {
 
                     const folder = folders.find(folder => {
                         return folder.id === note.folderId
-                    }) || {name : 'FolderName'}
+                    }) || {name : 'Folder Name Unknown'}
 
                     return (
                         <>

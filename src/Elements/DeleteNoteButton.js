@@ -1,9 +1,18 @@
 import React from 'react';
 import StoreContext from '../StoreContext';
 import './deletenote.css';
+import PropTypes from 'prop-types';
 
 class DeleteNote extends React.Component {
     static contextType = StoreContext;
+
+    static defaultProps = {
+        id: 'wuia4rgis'
+    };
+
+    static propTypes = {
+        id: PropTypes.string.isRequired
+    };
 
     deleteNote = (id) => {
         fetch(`http://localhost:9090/notes/${id}`, {
