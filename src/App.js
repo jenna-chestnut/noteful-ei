@@ -1,17 +1,22 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import Header from './Header';
-import Main from './Main';
-import SideBar from './SideBar';
+import Header from './ParentComponents/Header';
+import Main from './ParentComponents/Main';
+import SideBar from './ParentComponents/SideBar';
 import MainSideBar from './Main/MainSideBar';
 import FolderSideBar from './Folder/FolderSidebar';
 import NoteSideBar from './Note/NoteSidebar';
+import AddFolderSideBar from './AddFolderForm/AddFolderSideBar';
+import AddNoteSideBar from './AddNoteForm/AddNoteSideBar'
 import MainMain from './Main/MainMain';
 import FolderMain from './Folder/FolderMain';
 import NoteMain from './Note/NoteMain';
-import ClearMessage from './Elements/ClearMessage';
+import AddFolderMain from './AddFolderForm/AddFolderMain';
+import AddNoteMain from './AddNoteForm/AddNoteMain'
+import ClearMessage from './Elements/ClearMessageButton';
 import StoreContext from './StoreContext';
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,17 +35,17 @@ class App extends React.Component {
     fetch('http://localhost:9090/db')
       .then(resp => {
         if (!resp.ok) {
-          throw new Error('Sorry! Something went wrong. Please try again later.')
+          throw new Error('Unable to contact server. Please try again later!')
         } else {
           return resp.json()
         }
       })
       .then(data => {
-        setTimeout(() =>
-          this.setState({
-            ...data,
-            loading: false
-          }), 500);
+        console.log(data);
+        this.setState({
+          ...data,
+          loading: false
+        });
       })
       .catch(error => {
         console.log(error)
@@ -80,6 +85,18 @@ class App extends React.Component {
     })
   }
 
+  handleAddNote = (note) => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    })
+  }
+
+  handleAddFolder = (folder) => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    })
+  }
+
   render() {
 
     const contextValues = {
@@ -87,19 +104,21 @@ class App extends React.Component {
       handleDelete: this.handleDelete,
       updateMessage: this.updateMessage,
       handleError: this.updateError,
-      clearMessage: this.clearMessage
+      clearMessage: this.clearMessage,
+      handleAddFolder: this.handleAddFolder,
+      handleAddNote: this.handleAddNote
     }
 
     const loading = this.state.loading ?
-      <div className='loading'>Loading...</div>
+      <div className='banner'>Loading...</div>
       : '';
 
     const error = this.state.error ?
-      <div className='loading'>{this.state.error}<ClearMessage/></div>
+      <div className='banner'>{this.state.error}<ClearMessage /></div>
       : '';
 
     const updateMessage = this.state.updateMessage ?
-      <div className='loading'>{this.state.updateMessage}<ClearMessage/></div>
+      <div className='banner'>{this.state.updateMessage}<ClearMessage /></div>
       : '';
 
     return (
@@ -108,25 +127,31 @@ class App extends React.Component {
           <StoreContext.Provider value={contextValues}>
 
             <Header >
-              <Route exact path='/' component={Header} />
-              <Route path='/folder/:folderId' component={Header} />
-              <Route path='/note/:noteId' component={Header} />
+              <Route path='/' component={Header} />
             </Header>
 
             {loading}{error}{updateMessage}
 
             <main className='group'>
-              <SideBar >
-                <Route exact path='/' component={MainSideBar} />
-                <Route path='/folder/:folderId' component={FolderSideBar} />
-                <Route path='/note/:noteId' component={NoteSideBar} />
-              </SideBar>
+              <ErrorBoundary>
+                <SideBar >
+                  <Route exact path='/' component={MainSideBar} />
+                  <Route path='/folder/:folderId' component={FolderSideBar} />
+                  <Route path='/note/:noteId' component={NoteSideBar} />
+                  <Route path='/AddNote' component={AddNoteSideBar} />
+                  <Route path='/AddFolder' component={AddFolderSideBar} />
+                </SideBar>
+              </ErrorBoundary>
 
-              <Main >
-                <Route exact path='/' component={MainMain} />
-                <Route path='/folder/:folderId' component={FolderMain} />
-                <Route path='/note/:noteId' component={NoteMain} />
-              </Main>
+              <ErrorBoundary>
+                <Main >
+                  <Route exact path='/' component={MainMain} />
+                  <Route path='/folder/:folderId' component={FolderMain} />
+                  <Route path='/note/:noteId' component={NoteMain} />
+                  <Route path='/AddNote' component={AddNoteMain} />
+                  <Route path='/AddFolder' component={AddFolderMain} />
+                </Main>
+              </ErrorBoundary>
             </main>
 
           </StoreContext.Provider>

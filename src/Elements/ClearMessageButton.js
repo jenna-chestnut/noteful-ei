@@ -9,7 +9,7 @@ class ClearMessage extends React.Component {
                 {({ clearMessage }) => {
                     return (
                         <button className='clear-message'
-                            onClick={clearMessage}>' X '</button>
+                            onClick={clearMessage}> Clear </button>
                     )
                 }}
             </StoreContext.Consumer>

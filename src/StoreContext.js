@@ -5,6 +5,8 @@ const StoreContext = React.createContext({
   updateMessage: () => {},
   clearMessage: () => {},
   updateError: () => {},
+  handleAddFolder: () => {},
+  handleNoteFolder: () => {},
   "folders": [],
   "notes": []
 })

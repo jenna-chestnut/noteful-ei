@@ -1,0 +1,22 @@
+.boundaryError {
+  position: absolute;
+  background-color: #3f1a33;
+  width: 60vw;
+  height: 85vh;
+}
+
+.boundaryError h1 {
+  padding: 15% 5%;
+  font-size: 25px;
+}
+
+@media all and (min-width: 600px) {
+  .boundaryError h1 {
+    padding-top: 15%;
+    font-size: 45px;
+  }
+  .boundaryError {
+    width: 85vw;
+    height: 85vh;
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AddFolder from '../Elements/AddFolder';
+import AddFolder from '../Elements/AddFolderButton';
 import StoreContext from '../StoreContext';
+import AddNote from '../Elements/AddNoteButton';
 
 class MainSideBar extends React.Component {
 
@@ -27,6 +28,7 @@ class MainSideBar extends React.Component {
                         <>
                             {folderItems}
                             <AddFolder />
+                            <AddNote />
                         </>
                     )
                 }}

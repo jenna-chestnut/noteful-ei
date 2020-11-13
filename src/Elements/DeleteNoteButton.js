@@ -38,8 +38,7 @@ class DeleteNote extends React.Component {
                             }}
                         >DELETE</button>
                     )
-                }
-                }
+                }}
             </StoreContext.Consumer>
         )
     }

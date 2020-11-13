@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import './sweepingstyles/header.css';
+import '../sweepingstyles/header.css';
 
 class Header extends React.Component {
     render() {

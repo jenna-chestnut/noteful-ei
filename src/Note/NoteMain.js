@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import StoreContext from '../StoreContext';
-import DeleteNote from '../Elements/DeleteNote';
+import DeleteNote from '../Elements/DeleteNoteButton';
 
 class NoteMain extends React.Component {
 
@@ -13,16 +13,18 @@ class NoteMain extends React.Component {
                     const note = notes.find(note => {
                         return this.props.match.params.noteId
                             === note.name
-                    }) || {content: 'loading'}
+                    }) || { content: 'loading' }
 
 
                     return (
                         <div className='content'>
                             <li className='note-view' key={note.id}>
                                 <span className='note-name'>{note.name}</span>
-                                <DeleteNote 
-                                id={note.id}/>
-                                <p>Date modified: {moment(note.modified).calendar()}</p>
+                                <DeleteNote
+                                    id={note.id} />
+                                <p>Date modified: <br />
+                                    {moment(note.modified).calendar()}
+                                </p>
                             </li>
                             <p>{note.content}</p>
                         </div>

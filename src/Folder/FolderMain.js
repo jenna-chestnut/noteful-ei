@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import AddNote from '../Elements/AddNote';
-import DeleteNote from '../Elements/DeleteNote';
+import AddNote from '../Elements/AddNoteButton';
+import DeleteNote from '../Elements/DeleteNoteButton';
 import StoreContext from '../StoreContext';
 
 class FolderMain extends React.Component {
@@ -23,15 +23,17 @@ class FolderMain extends React.Component {
                                 {item.name}
                             </Link>
                             <DeleteNote id={item.id}/>
-                            <p>Date modified: {moment(item.modified).calendar()}</p>
+                            <p>Date modified: <br/>
+                            {moment(item.modified).calendar()}
+                            </p>
                         </li>
                     })
 
                     return (
-                        <>
+                        <ul>
                             { mainList}
                             <AddNote />
-                        </>
+                        </ul>
                     )
                 }}
             </StoreContext.Consumer>

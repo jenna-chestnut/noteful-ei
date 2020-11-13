@@ -12,6 +12,10 @@
   font-size: 30px;
 }
 
+.main-seg ul {
+  padding-top: 35px;
+}
+
 .note-name {
   font-size: 30px;
   margin: 15px auto;
@@ -21,6 +25,7 @@
   background-color: #3f1a33;
   margin: 0;
   border-bottom-right-radius: 0px;
+  list-style-type: none;
 }
 
 .content p {
@@ -37,14 +42,14 @@
 
 li p {
   margin: 0 auto;
-  width: 40%;
+  width: 60%;
   padding-top: 5%;
 }
 
-@media all and (min-width:600px) {
+@media all and (min-width:800px) {
   li p {
     margin: 0 auto;
-    width: 40%;
+    width: 80%;
     padding-top: 5%;
   }
   .main-seg a, .note-name {
@@ -55,5 +60,8 @@ li p {
   .content p {
     width: 85%;
     margin: 15px auto;
+  }
+  .main-seg ul {
+    padding-top: 4px;
   }
 }
