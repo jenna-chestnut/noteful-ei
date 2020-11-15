@@ -4,8 +4,13 @@ import moment from 'moment';
 import AddNote from '../Elements/AddNoteButton';
 import DeleteNote from '../Elements/DeleteNoteButton';
 import StoreContext from '../StoreContext';
+import PropTypes from 'prop-types';
 
 class FolderMain extends React.Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired
+    };
+
     render() {
         return (
             <StoreContext.Consumer>

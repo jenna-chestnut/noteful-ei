@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import AddFolder from '../Elements/AddFolderButton';
 import StoreContext from '../StoreContext';
 import AddNote from '../Elements/AddNoteButton';
+import PropTypes from 'prop-types';
 
 class FolderSideBar extends React.Component {
+    static propTypes = {
+       match: PropTypes.object.isRequired
+    };
+
     render() {
         return (
             <StoreContext.Consumer>

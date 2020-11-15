@@ -33,6 +33,7 @@ class DeleteNote extends React.Component {
 
     render() {
         const { id } = this.props;
+        
         return (
             <StoreContext.Consumer>
                 {({ handleDelete }) => {

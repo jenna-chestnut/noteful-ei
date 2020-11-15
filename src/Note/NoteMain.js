@@ -2,8 +2,13 @@ import React from 'react';
 import moment from 'moment';
 import StoreContext from '../StoreContext';
 import DeleteNote from '../Elements/DeleteNoteButton';
+import PropTypes from 'prop-types';
 
 class NoteMain extends React.Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired
+    };
+    
 
     render() {
         return (

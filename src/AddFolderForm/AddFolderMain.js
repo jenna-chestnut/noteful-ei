@@ -3,6 +3,7 @@ import '../sweepingstyles/form.css';
 import './addfolderform.css';
 import StoreContext from '../StoreContext';
 import ValidationError from '../AddNoteForm/ValidationError';
+import PropTypes from 'prop-types';
 
 class AddFolderMain extends React.Component {
     static contextType = StoreContext;
@@ -14,6 +15,10 @@ class AddFolderMain extends React.Component {
             touched: false
         }
     }
+
+    static propTypes = {
+        history: PropTypes.object.isRequired
+    };
 
     handleAddFolder = (e) => {
         e.preventDefault();

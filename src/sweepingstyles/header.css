@@ -6,13 +6,16 @@ header {
 }
 
 h1 {
-    padding: 25px 15px;
+    padding: 15px 15px;
     font-size: 55px;
+    text-orientation: upright; 
+    writing-mode: vertical-lr;
 }
 
 @media all and (min-width:600px) {
     header {
         padding: 5px;
+        padding-top: 20px;
     }
     h1 {
         padding: 30px 45px;

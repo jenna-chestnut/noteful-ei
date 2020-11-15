@@ -1,5 +1,6 @@
 import React from 'react';
-import './sweepingstyles/errorboundary.css'
+import './sweepingstyles/errorboundary.css';
+import PropTypes from 'prop-types';
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -12,6 +13,10 @@ class ErrorBoundary extends React.Component {
     static getDerivedStateFromError(error) {
         return { hasError: true }
     }
+
+    static propTypes = {
+        children : PropTypes.object.isRequired
+    };
 
     render() {
         const content = this.state.hasError ?

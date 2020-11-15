@@ -4,6 +4,7 @@ import './addnoteform.css';
 import SelectFolder from './SelectFolder';
 import StoreContext from '../StoreContext';
 import ValidationError from './ValidationError';
+import PropTypes from 'prop-types';
 
 class AddNoteMain extends React.Component {
     static contextType = StoreContext;
@@ -18,6 +19,10 @@ class AddNoteMain extends React.Component {
             touched: false
         }
     }
+
+    static propTypes = {
+        history: PropTypes.object.isRequired
+    };
 
     handleStateFields = (key, value) => {
         let modified = new Date().toISOString();

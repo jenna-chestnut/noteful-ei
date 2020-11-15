@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import StoreContext from '../StoreContext';
+import PropTypes from 'prop-types';
 
 class NoteSideBar extends React.Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired
+    };
+
     render() {
         return (
             <StoreContext.Consumer>
