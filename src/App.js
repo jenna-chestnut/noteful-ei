@@ -158,9 +158,9 @@ class App extends React.Component {
                 </Main>
               </ErrorBoundary>
             </main>
-
           </StoreContext.Provider>
         </div>
+        <footer>Jenna Chestnut / <a href='https://linktr.ee/jenna.chestnut'>@Jennabot</a></footer>
       </BrowserRouter>
     );
   }
