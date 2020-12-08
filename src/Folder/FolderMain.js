@@ -17,28 +17,37 @@ class FolderMain extends React.Component {
                 {({ notes, folders }) => {
 
                     const folder = folders.find(folder => {
-                        return folder.name === this.props.match.params.folderId
+                        return folder.folder_name === this.props.match.params.folderId
                     })
 
-                    let list = notes.filter(item => item.folderId === folder.id)
+                    let list = notes.filter(item => item.folder_id === folder.id)
 
                     let mainList = list.map(item => {
-                        return <li key={item.id}>
-                            <Link to={`/note/${item.name}`}>
-                                {item.name}
+                        return (
+                        <div className='group' key={item.id}>
+                        <li className='thinned'>
+                            <Link to={`/note/${item.note_name}`}>
+                                {item.note_name}
                             </Link>
-                            <DeleteNote id={item.id}/>
-                            <p>Date modified: <br/>
-                            {moment(item.modified).calendar()}
+                            <p>Date modified:{' '} 
+                             {moment(item.modified).calendar()}
                             </p>
                         </li>
+                        <div className='d-note'>
+                            <DeleteNote
+                            id={item.id}/>
+                            </div>
+                        </div>
+                        )
                     })
 
                     return (
+                        <>
                         <ul>
                             { mainList}
-                            <AddNote />
                         </ul>
+                        <AddNote />
+                        </>
                     )
                 }}
             </StoreContext.Consumer>

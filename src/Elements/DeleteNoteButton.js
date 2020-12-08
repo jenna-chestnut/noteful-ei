@@ -11,11 +11,11 @@ class DeleteNote extends React.Component {
     };
 
     static propTypes = {
-        id: PropTypes.string.isRequired
+        id: PropTypes.number.isRequired
     };
 
     deleteNote = (id) => {
-        fetch(`http://localhost:9090/notes/${id}`, {
+        fetch(`http://localhost:8000/note/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -26,19 +26,22 @@ class DeleteNote extends React.Component {
                     throw new Error('Item not deleted! Try again.')
                 } else {
                     this.context.updateMessage('Item deleted!')
+                    this.props.history.push('/');
                 }
             })
-            .catch(error => this.context.updateError(error.message));
+            .catch(error => this.context.handleError(error.message));
     }
 
     render() {
         const { id } = this.props;
-        
+        const buttonStyle = this.props.noteMain ? 
+        'd-note-main' : 'delete-note';
+
         return (
             <StoreContext.Consumer>
                 {({ handleDelete }) => {
                     return (
-                        <button className='delete-note'
+                        <button className={buttonStyle}
                             onClick={() => {
                                 if (window.confirm
                                     ('Are you sure you want to delete?')) {

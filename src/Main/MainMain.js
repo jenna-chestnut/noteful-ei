@@ -12,25 +12,32 @@ class MainMain extends React.Component {
             <StoreContext.Consumer>
                 {({ notes }) => {
 
-                    let mainList = notes.map(item => {
+                    let mainList = notes.map((item, idx) => {
                         return (
-                            <li key={item.id}>
-                                <Link to={`/note/${item.name}`}>
-                                    {item.name}
+                            <div className='group' key={item.id}>
+                            <li className='thinned'>
+                                <Link to={`/note/${item.note_name}`}>
+                                    {item.note_name}
                                 </Link>
-                                <DeleteNote
-                                    id={item.id} />
-                                <p>Date modified: <br />
+                                <p>Date modified:{' '}
                                     {moment(item.modified).calendar()}
                                 </p>
                             </li>
+                            <div className='d-note'>
+                            <DeleteNote
+                            id={item.id} 
+                            key={idx}/>
+                            </div>
+                            </div>
                         )
                     })
                     return (
+                        <>
                         <ul>
                             { mainList}
-                            <AddNote />
                         </ul>
+                        <AddNote />
+                        </>
                     )
                 }}
             </StoreContext.Consumer>

@@ -11,7 +11,7 @@ class AddFolderMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            folder_name: '',
             touched: false
         }
     }
@@ -33,7 +33,7 @@ class AddFolderMain extends React.Component {
             body: newFolder
         }
 
-        fetch('http://localhost:9090/folders', options)
+        fetch('http://localhost:8000/folder', options)
             .then(resp => {
                 if (!resp.ok) {
                     throw new Error('Folder not added - please try again later.')
@@ -44,18 +44,18 @@ class AddFolderMain extends React.Component {
                 this.context.updateMessage('Folder added!');
             })
             .then(() => this.props.history.push('/'))
-            .catch(error => this.context.updateError(error.message));
+            .catch(error => this.context.handleError(error.message));
     }
 
     updateFolderInput = (value) => {
         this.setState({
-            name: value,
+            folder_name: value,
             touched: true
         })
     }
 
     validateFolderName = () => {
-        let name = this.state.name.trim();
+        let name = this.state.folder_name.trim();
         if (name.length === 0) {
             return 'Please enter note name';
         } else if (name.length < 3) {
@@ -66,7 +66,7 @@ class AddFolderMain extends React.Component {
     }
 
     render() {
-        const { name } = this.state;
+        const { folder_name } = this.state;
         const nameError = this.validateFolderName();
 
         return (
@@ -79,7 +79,7 @@ class AddFolderMain extends React.Component {
                 <fieldset>
                     <legend>Folder Details</legend>
                     <label htmlFor='new-folder'>Folder Name:</label>
-                    <input type='text' id='new-folder' placeholder='ie Indubitable' defaultValue={name}
+                    <input type='text' id='new-folder' placeholder='ie Indubitable' defaultValue={folder_name}
                         onChange={(e) => this.updateFolderInput(e.target.value)} required />
                     {this.state.touched && (
                         <ValidationError message={nameError} />

@@ -15,13 +15,13 @@ class SelectFolder extends React.Component {
         const select = this.context.folders.map((folder, idx) => {
             return (
                 <option key={idx} value={folder.id}>
-                    {folder.name}
+                    {folder.folder_name}
                 </option>
             )
         })
         
         return (
-            <select onChange={(e) => handleChange('folderId', e.target.value)} required>
+            <select onChange={(e) => handleChange('folder_id', e.target.value)} required>
                 {select}
             </select>
         )

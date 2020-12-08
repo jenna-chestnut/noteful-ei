@@ -5,15 +5,22 @@
 .main-seg li {
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 25px;
+  padding: 15px;
 }
 
 .main-seg a {
   font-size: 30px;
 }
 
+.thinned {
+  width: 100%;
+  margin: 0;
+  display: inline-block;
+}
+
 .main-seg ul {
   padding-top: 35px;
+  margin-bottom: 0;
 }
 
 .note-name {
@@ -42,17 +49,23 @@
 
 li p {
   margin: 0 auto;
-  width: 60%;
   padding-top: 5%;
 }
 
-@media all and (min-width:800px) {
+@media all and (min-width: 1000px) {
+  .main-seg li {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+@media all and (min-width: 1200px) {
   li p {
     margin: 0 auto;
-    width: 80%;
     padding-top: 5%;
   }
-  .main-seg a, .note-name {
+  .main-seg a,
+  .note-name {
     font-size: 30px;
     float: left;
     margin-left: 20px;
@@ -63,5 +76,12 @@ li p {
   }
   .main-seg ul {
     padding-top: 4px;
+  }
+  .thinned {
+    width: 50%;
+    flex: 5;
+  }
+  .thinned p {
+    text-align: right;
   }
 }

@@ -13,12 +13,12 @@ class MainSideBar extends React.Component {
 
                     const folderItems = folders.map((folder, idx) => {
                         return (
-                            <Link key={idx} to={`/folder/${folder.name}`}>
+                            <Link key={idx} to={`/folder/${folder.folder_name}`}>
                                 <li
                                     key={folder.id}
                                     id={folder.id}
                                     name='folder'>
-                                    {folder.name}
+                                    {folder.folder_name}
                                 </li>
                             </Link>
                         )
@@ -26,8 +26,10 @@ class MainSideBar extends React.Component {
 
                     return (
                         <>
-                            {folderItems}
+                            <ul>
+                                {folderItems}
                             <AddFolder />
+                            </ul>
                             <AddNote />
                         </>
                     )

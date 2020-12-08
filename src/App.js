@@ -32,27 +32,33 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.setState({ loading: true })
-    fetch('http://localhost:9090/db')
-      .then(resp => {
-        if (!resp.ok) {
-          throw new Error('Unable to contact server. Please try again later!')
-        } else {
-          return resp.json()
-        }
-      })
-      .then(data => {
-        this.setState({
-          ...data,
-          loading: false
-        });
-      })
-      .catch(error => {
-        this.setState({
-          loading: false,
-          error: error.message
+
+      Promise.all([
+        fetch('http://localhost:8000/note'),
+        fetch('http://localhost:8000/folder')
+      ])
+        .then(([notesRes, foldersRes]) => {
+          if (!notesRes.ok)
+            return notesRes.json().then(e => Promise.reject(e))
+          if (!foldersRes.ok)
+            return foldersRes.json().then(e => Promise.reject(e))
+  
+          return Promise.all([
+            notesRes.json(),
+            foldersRes.json(),
+          ])
         })
-      })
-  }
+        .then(([notes, folders]) => {
+          this.setState({ 
+            notes, folders, 
+            loading: false
+        })
+        })
+        .catch(error => {
+          this.setState({ 
+            error: error.message })
+        })
+    }
 
   handleDelete = (id) => {
     const toDelete = this.state.notes.find(note => {

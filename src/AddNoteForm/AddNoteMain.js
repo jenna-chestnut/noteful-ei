@@ -13,8 +13,8 @@ class AddNoteMain extends React.Component {
         super(props);
         this.state = {
             content: '',
-            folderId: '',
-            name: '',
+            folder_id: 0,
+            note_name: '',
             modified: '',
             touched: false
         }
@@ -27,7 +27,7 @@ class AddNoteMain extends React.Component {
     handleStateFields = (key, value) => {
         let modified = new Date().toISOString();
 
-        if (key === 'name') {
+        if (key === 'note_name') {
             this.setState({
                 touched: true
             })
@@ -52,22 +52,23 @@ class AddNoteMain extends React.Component {
             body: newNote
         }
 
-        fetch('http://localhost:9090/notes', options)
+        fetch('http://localhost:8000/note', options)
             .then(resp => {
-                if (!resp.ok) {
+                if (!resp) {
                     throw new Error('Note was not added - please try again later.')
                 } else return resp.json()
             })
             .then(respJson => {
+                console.log(respJson)
                 this.context.handleAddNote(respJson);
                 this.context.updateMessage('Note added!');
             })
             .then(() => this.props.history.push('/'))
-            .catch(error => this.context.updateError(error.message));
+            .catch(error => this.context.handleError(error.message));
     }
 
     validateNoteName = () => {
-        let name = this.state.name.trim();
+        let name = this.state.note_name.trim();
         if (name.length === 0) {
             return 'Please enter note name';
         } else if (name.length < 3) {
@@ -95,7 +96,7 @@ class AddNoteMain extends React.Component {
                     <label htmlFor='new-folder'>Note Name:</label>
                     <input type='text' id='new-folder'
                         onChange={(e) => {
-                            this.handleStateFields('name', e.target.value);
+                            this.handleStateFields('note_name', e.target.value);
                         }} placeholder='Bunnies' required />
                     {this.state.touched && (
                         <ValidationError message={nameError} />

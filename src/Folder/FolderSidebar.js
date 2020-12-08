@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 class FolderSideBar extends React.Component {
     static propTypes = {
-       match: PropTypes.object.isRequired
+        match: PropTypes.object.isRequired
     };
 
     render() {
@@ -17,23 +17,25 @@ class FolderSideBar extends React.Component {
                     const { folderId } = this.props.match.params
 
                     const folderItems = folders.map((folder, idx) => {
-                        return <Link key={idx} to={`/folder/${folder.name}`}>
+                        return <Link key={idx} to={`/folder/${folder.folder_name}`}>
                             <li
                                 key={folder.id}
                                 type='radio'
                                 id={folder.id}
                                 name='folder'
-                                className={folder.name === folderId ?
+                                className={folder.folder_name === folderId ?
                                     'selected-folder' : ''}>
-                                {folder.name}
+                                {folder.folder_name}
                             </li>
                         </Link>
                     })
 
                     return (
                         <>
-                            {folderItems}
-                            <AddFolder />
+                            <ul>
+                                {folderItems}
+                                <AddFolder />
+                            </ul>
                             <AddNote />
                         </>
                     )

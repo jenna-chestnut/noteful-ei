@@ -17,16 +17,14 @@ class NoteMain extends React.Component {
 
                     const note = notes.find(note => {
                         return this.props.match.params.noteId
-                            === note.name
+                            === note.note_name
                     }) || { content: 'loading' }
 
 
                     return (
                         <div className='content'>
                             <li className='note-view' key={note.id}>
-                                <span className='note-name'>{note.name}</span>
-                                <DeleteNote
-                                    id={note.id} />
+                                <span className='note-name'>{note.note_name}</span>
                                 <p>Date modified: <br />
                                     {moment(note.modified).calendar()}
                                 </p>
