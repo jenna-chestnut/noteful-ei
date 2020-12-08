@@ -4,6 +4,7 @@ import './addfolderform.css';
 import StoreContext from '../StoreContext';
 import ValidationError from '../AddNoteForm/ValidationError';
 import PropTypes from 'prop-types';
+import config from '../config';
 
 class AddFolderMain extends React.Component {
     static contextType = StoreContext;
@@ -33,7 +34,7 @@ class AddFolderMain extends React.Component {
             body: newFolder
         }
 
-        fetch('http://localhost:8000/folder', options)
+        fetch(`${config.API_ENDPOINT}/folder`, options)
             .then(resp => {
                 if (!resp.ok) {
                     throw new Error('Folder not added - please try again later.')

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route } from 'react-router-dom';
+import config from './config';
 import React from 'react';
 import './App.css';
 import Header from './ParentComponents/Header';
@@ -34,8 +35,8 @@ class App extends React.Component {
     this.setState({ loading: true })
 
       Promise.all([
-        fetch('http://localhost:8000/note'),
-        fetch('http://localhost:8000/folder')
+        fetch(`${config.API_ENDPOINT}/note`),
+        fetch(`${config.API_ENDPOINT}/folder`)
       ])
         .then(([notesRes, foldersRes]) => {
           if (!notesRes.ok)

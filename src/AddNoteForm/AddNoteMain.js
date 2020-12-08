@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 import '../sweepingstyles/form.css';
 import './addnoteform.css';
 import SelectFolder from './SelectFolder';
@@ -52,7 +53,7 @@ class AddNoteMain extends React.Component {
             body: newNote
         }
 
-        fetch('http://localhost:8000/note', options)
+        fetch(`${config.API_ENDPOINT}/note`, options)
             .then(resp => {
                 if (!resp) {
                     throw new Error('Note was not added - please try again later.')
