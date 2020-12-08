@@ -2,6 +2,7 @@ import React from 'react';
 import StoreContext from '../StoreContext';
 import './deletenote.css';
 import PropTypes from 'prop-types';
+import config from '../config';
 
 class DeleteNote extends React.Component {
     static contextType = StoreContext;
@@ -15,7 +16,7 @@ class DeleteNote extends React.Component {
     };
 
     deleteNote = (id) => {
-        fetch(`http://localhost:8000/note/${id}`, {
+        fetch(`${config.API_ENDPOINT}/note/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
