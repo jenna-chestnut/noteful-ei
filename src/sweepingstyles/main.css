@@ -40,6 +40,10 @@
   margin: 15px auto;
 }
 
+.note-view p {
+  margin: 0;
+}
+
 .content {
   background-color: #203636;
   margin: 15px;

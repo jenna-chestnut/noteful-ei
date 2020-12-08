@@ -24,7 +24,7 @@ class NoteMain extends React.Component {
                         <div className='content'>
                             <li className='note-view' key={note.id}>
                                 <span className='note-name'>{note.note_name}</span>
-                                <p>Date modified: <br />
+                                <p>Date modified:
                                     {moment(note.modified).calendar()}
                                 </p>
                             </li>
